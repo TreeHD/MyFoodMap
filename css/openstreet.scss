@@ -27,15 +27,7 @@ section.header{
 section.middle {
     display: flex;
     flex-direction: row;
-    section.sidebar {
-        min-height: 100vh;
-        width: 0vw;
-        &.expand{
-            width: auto;
-            max-width: 80vw;
-            transition: cubic-bezier(0.075, 0.82, 0.165, 1) 0.3s;
-        }
-    }
+    
 }
 
 #map {
@@ -43,4 +35,14 @@ section.middle {
     min-height: 100vh;
     min-width: 100vw;
     
+}
+
+section#sidebar {
+    min-height: 100vh;
+    width: 0vw;
+    &.expand{
+        width: auto;
+        max-width: 80vw;
+        transition: cubic-bezier(0.075, 0.82, 0.165, 1) 0.3s;
+    }
 }

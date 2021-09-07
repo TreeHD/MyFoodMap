@@ -146,15 +146,26 @@
     <script>
         if ("geolocation" in navigator) {
             /* geolocation is available */
+            
             navigator.geolocation.getCurrentPosition(function (position) {
                 console.log(position.coords.latitude, position.coords.longitude);
-                var lat = position.coords.latitude;
-                var lon = position.coords.longitude;
+                if(position.coords.latitude){
+                    var lat = position.coords.latitude;
+                }else{
+                    var lat = "22.77253820549821"
+                }
+                if(position.coords.longitude){
+                    var lon = position.coords.longitude;
+                }else{
+                    var lon = "120.40030881098461"
+                }
+                
                 initMap(position.coords.latitude, position.coords.longitude);
             });
         } else {
             /* geolocation IS NOT available */
             alert("你沒有開啟定位服務or沒有權限")
+            console.log(position.coords.latitude, position.coords.longitude);
         }
 
         function initMap(latitude, longitude) {
