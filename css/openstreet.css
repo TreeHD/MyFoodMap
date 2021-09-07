@@ -1,0 +1,57 @@
+section.header {
+  position: absolute;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  height: 8vh;
+  min-width: 100vw;
+}
+
+section.header div.headers {
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+section.header div.headers input {
+  width: auto;
+  height: 60%;
+}
+
+section.header div.headers .btn.expand-sidebar {
+  z-index: 1000;
+  font-size: 3vw;
+}
+
+section.middle {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+section.middle section.sidebar {
+  min-height: 100vh;
+  width: 0vw;
+}
+
+section.middle section.sidebar.expand {
+  width: auto;
+  max-width: 80vw;
+  -webkit-transition: cubic-bezier(0.075, 0.82, 0.165, 1) 0.3s;
+  transition: cubic-bezier(0.075, 0.82, 0.165, 1) 0.3s;
+}
+
+#map {
+  position: relative;
+  min-height: 100vh;
+  min-width: 100vw;
+}
+/*# sourceMappingURL=openstreet.css.map */

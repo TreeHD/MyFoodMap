@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.markercluster@1.5.1/dist/MarkerCluster.css">
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/leaflet.markercluster@1.5.1/dist/MarkerCluster.Default.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet" href="css/openstreet.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenStreetMaps</title>
+
+
+</head>
+
+<body>
+    <section class="middle">
+        <section class="sidebar" id="sidebar">
+            <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px;">
+                <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                    <svg class="bi me-2" width="40" height="32">
+                        <use xlink:href="#bootstrap"></use>
+                    </svg>
+                    <span class="fs-4">Sidebar</span>
+                </a>
+                <hr>
+                <ul class="nav nav-pills flex-column mb-auto">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link active" aria-current="page">
+                            <svg class="bi me-2" width="16" height="16">
+                                <use xlink:href="#home"></use>
+                            </svg>
+                            Home
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link text-white">
+                            <svg class="bi me-2" width="16" height="16">
+                                <use xlink:href="#speedometer2"></use>
+                            </svg>
+                            Dashboard
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link text-white">
+                            <svg class="bi me-2" width="16" height="16">
+                                <use xlink:href="#table"></use>
+                            </svg>
+                            Orders
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link text-white">
+                            <svg class="bi me-2" width="16" height="16">
+                                <use xlink:href="#grid"></use>
+                            </svg>
+                            Products
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link text-white">
+                            <svg class="bi me-2" width="16" height="16">
+                                <use xlink:href="#people-circle"></use>
+                            </svg>
+                            Customers
+                        </a>
+                    </li>
+                </ul>
+                <hr>
+                <div class="dropdown">
+                    <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+                        id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+                        <strong>mdo</strong>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+                        <li><a class="dropdown-item" href="#">New project...</a></li>
+                        <li><a class="dropdown-item" href="#">Settings</a></li>
+                        <li><a class="dropdown-item" href="#">Profile</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#">Sign out</a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <div id="map">
+            <section class="header">
+                <div class="container-fluid headers ">
+                    <div class="btn expand-sidebar" id="expand-sidebar">
+                        <i class="fad fa-bars"></i>
+                    </div>
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                </div>
+        </section>
+        </div>
+    </section>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet-src.min.js"></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/leaflet.markercluster@1.5.1/dist/leaflet.markercluster-src.min.js"></script>
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-app.js"></script>
+    <!-- FirebaseUI -->
+    <script src="https://www.gstatic.com/firebasejs/ui/5.0.0/firebase-ui-auth.js"></script>
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-auth.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
+        crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script>
+        firebase.initializeApp({
+            apiKey: "AIzaSyC1xVFlQ7fZ-p0WOsPug7f1CpkeaGHQbps",
+            authDomain: "treexhd-20190919.firebaseapp.com",
+            databaseURL: "https://treexhd-20190919.firebaseio.com",
+            projectId: "treexhd-20190919",
+            storageBucket: "treexhd-20190919.appspot.com",
+            messagingSenderId: "961170977249",
+            appId: "1:961170977249:web:402edabbec6e117ae962a0",
+            measurementId: "G-Z4XDW3Y7HR"
+        });
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (user) {
+                // 使用者已登入，可以取得資料
+                var email = user.email;
+                var uid = user.uid;
+                console.log(email, uid);
+            } else {
+                // 使用者未登入
+            }
+        });
+    </script>
+
+    <script>
+        if ("geolocation" in navigator) {
+            /* geolocation is available */
+            navigator.geolocation.getCurrentPosition(function (position) {
+                console.log(position.coords.latitude, position.coords.longitude);
+                var lat = position.coords.latitude;
+                var lon = position.coords.longitude;
+                initMap(position.coords.latitude, position.coords.longitude);
+            });
+        } else {
+            /* geolocation IS NOT available */
+            alert("你沒有開啟定位服務or沒有權限")
+        }
+
+        function initMap(latitude, longitude) {
+            var map = L.map('map').setView([latitude, longitude], 15);
+            map.zoomControl.setPosition('bottomright')
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+            //Deprecated
+            // L.marker([22.725099971266946, 120.32598988807094]).addTo(map)
+            //     .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
+            //     .openPopup();
+
+            //將資料放進Map
+            const markers = new L.MarkerClusterGroup().addTo(map);
+            const goldIcon = new L.Icon({
+                iconUrl:
+                    "https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-gold.png",
+                shadowUrl:
+                    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
+                iconSize: [25, 41],
+                iconAnchor: [12, 41],
+                popupAnchor: [1, -34],
+                shadowSize: [41, 41]
+            });
+            //整理資料
+            data.forEach(function (item, index) {
+
+                //將descr整理
+                item.descr.forEach(function (item, index) {
+                    item = "<br>" + item
+                    console.log(item)
+                })
+
+                markers.addLayer(
+                    L.marker(item.local, {
+                        title: item.name,
+                        // icon: goldIcon
+
+                    })
+                        .addTo(map)
+                        .bindPopup(item.name + item.descr)
+                );
+            })
+
+        }
+
+        //模擬資料
+        const data = [
+            { name: "森川洋食二番部", local: [22.725094857640517, 120.3259886550821], descr: ["日料店", "手作漢堡排蛋包飯必點"] },
+            { name: "夢時代購物中心", local: [22.595153, 120.306923], descr: [] },
+            { name: "漢神百貨", local: [22.61942, 120.296386], descr: [] },
+            { name: "漢神巨蛋", local: [22.669603, 120.302288], descr: [] },
+            { name: "大統百貨", local: [22.630748, 120.318033], descr: [] }
+        ];
+
+        $("#expand-sidebar").click(function(){
+            $("#sidebar").toggleClass("expand");            
+        })
+    </script>
+</body>
+
+</html>
+</body>
+
+</html>
