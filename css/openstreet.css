@@ -34,6 +34,7 @@ section.header div.headers .btn.expand-sidebar {
 }
 
 section.middle {
+  position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -43,21 +44,33 @@ section.middle {
           flex-direction: row;
 }
 
-#map {
-  position: relative;
+section.middle #map {
+  position: absolute;
   min-height: 100vh;
   min-width: 100vw;
+  left: 0;
+  -webkit-transition: ease-in-out 0.3s;
+  transition: ease-in-out 0.3s;
 }
 
-section#sidebar {
+section.middle #map.toLeft {
+  left: 280px;
+  -webkit-transition: ease-in-out 0.3s;
+  transition: ease-in-out 0.3s;
+}
+
+section.middle div#sidebar {
+  position: absolute;
+  left: -100%;
+  z-index: 1000;
   min-height: 100vh;
-  width: 0vw;
+  -webkit-transition: ease-in-out 0.3s;
+  transition: ease-in-out 0.3s;
 }
 
-section#sidebar.expand {
-  width: auto;
-  max-width: 80vw;
-  -webkit-transition: cubic-bezier(0.075, 0.82, 0.165, 1) 0.3s;
-  transition: cubic-bezier(0.075, 0.82, 0.165, 1) 0.3s;
+section.middle div#sidebar.expand {
+  left: 0;
+  -webkit-transition: ease-in-out 0.3s;
+  transition: ease-in-out 0.3s;
 }
 /*# sourceMappingURL=openstreet.css.map */

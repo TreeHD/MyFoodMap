@@ -1,9 +1,9 @@
-body{
+body {
     max-width: 100vw;
     max-height: 100vh;
     overflow: hidden;
 }
-section.header{
+section.header {
     position: absolute;
     z-index: 1000;
     top: 0;
@@ -11,12 +11,12 @@ section.header{
     height: 8vh;
     min-width: 100vw;
     // background-color: black;
-    div.headers{
+    div.headers {
         height: 100%;
         display: flex;
         // justify-content: space-between;
         align-items: center;
-        input{
+        input {
             width: auto;
             height: 60%;
         }
@@ -30,24 +30,32 @@ section.header{
 }
 
 section.middle {
+    position: relative;
     display: flex;
     flex-direction: row;
-    
-}
+    #map {
+        position: absolute;
+        min-height: 100vh;
+        min-width: 100vw;
+        left: 0;
+        transition: ease-in-out 0.3s;
+        &.toLeft {
+            left: 280px;
+            transition: ease-in-out 0.3s;
+        }
+    }
 
-#map {
-    position: relative;
-    min-height: 100vh;
-    min-width: 100vw;
-    
-}
-
-section#sidebar {
-    min-height: 100vh;
-    width: 0vw;
-    &.expand{
-        width: auto;
-        max-width: 80vw;
-        transition: cubic-bezier(0.075, 0.82, 0.165, 1) 0.3s;
+    div#sidebar {
+        position: absolute;
+        left: -100%;
+        z-index: 1000;
+        min-height: 100vh;
+        // width: auto;
+        // max-width: 80vw;
+        transition: ease-in-out 0.3s;
+        &.expand {
+            left: 0;
+            transition: ease-in-out 0.3s;
+        }
     }
 }
